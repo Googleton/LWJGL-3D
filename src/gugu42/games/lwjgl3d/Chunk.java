@@ -59,7 +59,7 @@ public class Chunk {
 			}
 
 		}
-
+		
 		VertexColorData.flip();
 		VertexPositionData.flip();
 		GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, VBOVertexHandle);
@@ -121,7 +121,7 @@ public class Chunk {
 		case 3:
 			return new float[] { 1, 0.5f, 0f };
 		}
-		return new float[] { 1, 1, 1 };
+		return new float[] { 0, 0, 0 };
 	}
 
 	private float[] createCubeVertexCol(float[] cubeColorArray) {

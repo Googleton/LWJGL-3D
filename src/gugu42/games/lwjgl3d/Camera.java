@@ -10,8 +10,11 @@ public class Camera {
     
     public Camera(float x, float y, float z)
     {
-        //instantiate position Vector3f to the x y z params.
         position = new Vector3f(x, y, z);
+    }
+    
+    public void render(){
+    	//todo : Render du player
     }
     
     public void yaw(float amount)
@@ -51,12 +54,10 @@ public class Camera {
     public void flyUp(float distance)
     {
         position.y -= distance;
-     //   position.z += distance * (float)Math.cos(Math.toRadians(yaw));
     }
     
     public void flyDown(float distance)
     {
-    //    position.x -= distance * (float)Math.sin(Math.toRadians(yaw));
         position.y += distance;
     }
     

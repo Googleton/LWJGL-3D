@@ -17,6 +17,10 @@ import org.lwjgl.util.glu.GLU;
 
 public class Main {
 
+	RenderCube cube = new RenderCube();
+	
+	public boolean canFly = true;
+	
 	private int VBOVertexHandle;
 	private int VBOColorHandle;
 	
@@ -24,7 +28,7 @@ public class Main {
 	
 	private Chunk chunky;
 	private float PX, PY, PZ;
-	Camera camera = new Camera(0, 0, 0);
+	Camera camera = new Camera(2, 0, -20);
 	
 	public void start() {
 		try {
@@ -49,7 +53,7 @@ public class Main {
 	private void initGL() {
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glShadeModel(GL11.GL_SMOOTH);
-		GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+		GL11.glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
 		GL11.glClearDepth(1.0);
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glDepthFunc(GL11.GL_LEQUAL);
@@ -115,6 +119,7 @@ public class Main {
 		        {
 		            camera.strafeRight(movementSpeed*dt);
 		        }
+		        if(canFly){
 		        if (Keyboard.isKeyDown(Keyboard.KEY_A) || Keyboard.isKeyDown(Keyboard.KEY_SPACE))
 		        {
 		            camera.flyUp(movementSpeed*dt);
@@ -123,11 +128,13 @@ public class Main {
 		        {
 		            camera.flyDown(movementSpeed*dt);
 		        }
+		        }
 		        
 		        GL11.glLoadIdentity();
 		        camera.lookThrough();
 				if (RotateYaw % 60 == 0)
 					chunky.rebuildMesh(0, 0, 0);
+				cube.render(64, 0, 64, 16, 1, 16);
 				chunky.render();
 				// Render();
 				Display.update();
